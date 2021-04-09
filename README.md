@@ -1,3 +1,5 @@
 # poe-pob-reader
 
-### https://github.com/imaya/zlib.js/blob/develop/README.en.md
+### Enlaces Varios
+https://github.com/imaya/zlib.js/blob/develop/README.en.md
+https://pastebin.com/raw/r3EEZjCa
