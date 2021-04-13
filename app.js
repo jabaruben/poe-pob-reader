@@ -250,7 +250,7 @@ function jsonToXml(json, initial = true) {
 
 async function decompressString(compressedString) {
 
-    const decompressionScriptFilepath = '/poe-pob-reader/decompress-string.php';
+    const decompressionScriptFilepath = '/reader/decompress-string.php';
     const compressedStringToSend = { method: 'POST', body: compressedString };
     const response = await fetch(decompressionScriptFilepath, compressedStringToSend);
 
@@ -259,7 +259,7 @@ async function decompressString(compressedString) {
 
 async function compressString(decompressedString) {
 
-    const compressionScriptFilepath = '/poe-pob-reader/compress-string.php';
+    const compressionScriptFilepath = '/reader/compress-string.php';
     const decompressedStringToSend = { method: 'POST', body: decompressedString };
     const response = await fetch(compressionScriptFilepath, decompressedStringToSend);
 
