@@ -1,42 +1,5 @@
 import xmlToJsonModule from './xmlToJson.js';
 
-let jsonPob = decompressString(pobString).then((xmlStringOriginal) => {
-    console.log("xmlstring original", xmlStringOriginal);
-    let xmlDoc = new DOMParser().parseFromString(xmlStringOriginal, "text/xml");
-    // let jsonPob = xmlToJson.parse(xmlDoc);
-    let jsonPob = xmlToJsonModule(xmlDoc);
-    // let jsonPob = xmlToJson2(xmlDoc);
-    console.log("JSON", jsonPob);
-    return { "xmlStringOriginal": xmlStringOriginal, "json": jsonPob };
-}).then((result) => {
-    // console.log("result2", result);
-    var InputJSON = result.json;
-    // var output = OBJtoXML(InputJSON);
-    InputJSON = addNotesToJson(InputJSON);
-    var xmlStringFinal = jsonToXml(InputJSON);
-    console.log("xmlstring final", xmlStringFinal);
-    console.log("comparacion antes y despues", (result.xmlStringOriginal === xmlStringFinal));
-    result.xmlStringFinal = xmlStringFinal;
-    return result;
-    // return {
-    //     "xmlStringOriginal": result.xmlStringOriginal, 
-    //     "json": result.json, 
-    //     "xmlStringFinal": xmlStringFinal
-    // };
-}).then((result) => {
-    console.log("Cadena Original", pobString);
-    // let pobStringFinal = compressString(result.xmlStringFinal).then(result => {return result});
-    let pobStringFinal = compressString(result.xmlStringFinal).then(compressString => {
-        result.pobStringFinal = compressString;
-    });
-    console.log("Cadena Final", pobStringFinal);
-    result.pobString = pobString;
-    result.pobStringFinal = pobStringFinal;
-    console.log("result final", result);
-    return result;
-});
-
-
 // TODO: leer un pastebin usando el truco del /raw en la ruta
 // TODO: convertir todo en funciones que reciban parametros para poder usar el pastebin
 // TODO: Mostrar mas cosas que solo las notas
