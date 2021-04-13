@@ -56,6 +56,13 @@
 
     <div class="w3-container">
         <div class="w3-center">
+            <h2>URLs</h2>
+            <p><a href="https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_black&stacked=h">try it</a></p>
+            <p><a href="https://www.w3schools.com/w3css/w3css_templates.asp">templates</a></p>
+            <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_black.htm">template black</a></p>
+        </div>
+
+        <div class="w3-center">
             <h2>Containers</h2>
             <p>Use containers to create headers, sections and footers.</p>
         </div>
@@ -82,8 +89,53 @@
         </footer>
     </div>
 
+    <hr>
+
+    <div class="w3-container">
+        <header class="w3-container w3-blue-grey">
+            <h2>PoB Data</h2>
+        </header>
+
+        <div class="w3-padding w3-white w3-display-container">
+            <div id="inputs" class="w3-center">
+                <label>PoB Data</label>
+                <input id="inputs-data" type="text" value="" style="width:100%;" />
+                <span id="inputs-data-validation"></span>
+                <br />
+                <a data-action="loadData" class="w3-button w3-theme">Load Data</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="w3-padding w3-white w3-display-container">
+            <div id="reads" class="w3-center">
+                <label>PoB Notes</label>
+                <textarea id="inputs-data-notes" name="inputs-data-notes" rows="10" cols="50" style="width:100%;"></textarea>
+                <span id="inputs-data-validation-notes"></span>
+                <br />
+                <a data-action="saveData" class="w3-button w3-theme">Save Notes</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="w3-padding w3-white w3-display-container">
+            <div id="outputs" class="w3-center">
+                <label>PoB Data</label>
+                <input id="outputs-data" type="text" value="" style="width:100%;" />
+                <a data-action="copyOutput" class="w3-button w3-theme">Copy</a>
+            </div>
+        </div>
+
+        <footer class="w3-container w3-blue-grey">
+            <h5>Footer</h5>
+            <p class="w3-opacity">Footer information goes here</p>
+        </footer>
+    </div>
 
     <hr>
+
     <div class="w3-center">
         <h2>Pagination</h2>
         <!-- Pagination -->
@@ -117,6 +169,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/zlibjs@0.3.1/bin/zlib_and_gzip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/zlibjs@0.3.1/bin/rawinflate.min.js"></script>
+    <script src="xmlToJson2.js"></script>
+    <script src="jsonXmlConverter.js"></script>
     <script src="app.js" type="module"></script>
 </body>
 
