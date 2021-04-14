@@ -5,9 +5,7 @@
     <title>W3.CSS Template</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -62,6 +60,8 @@
             <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_black.htm">template black</a></p>
         </div>
 
+        <div class="w3-center" html-source="./components/accordion/accordion.html"></div>
+
         <div class="w3-center">
             <h2>Containers</h2>
             <p>Use containers to create headers, sections and footers.</p>
@@ -97,12 +97,21 @@
         </header>
 
         <div class="w3-padding w3-white w3-display-container">
-            <div id="inputs" class="w3-center">
-                <label>PoB Data</label>
-                <input id="inputs-data" type="text" value="" style="width:100%;" />
-                <span id="inputs-data-validation"></span>
-                <br />
-                <a data-action="loadData" class="w3-button w3-theme">Load Data</a>
+            <div id="inputs" class="w3-row">
+                <div class="w3-half w3-container w3-center">
+                    <label>Pastebin URL</label>
+                    <input id="inputs-data-pastebin" type="text" value="" style="width:100%;" />
+                    <span id="inputs-data-pastebin-validation"></span>
+                    <br />
+                    <a data-action="loadDataPastebin" class="w3-button w3-theme">Load</a> 
+                </div>
+                <div class="w3-half w3-container w3-center">
+                    <label>PoB Data</label>
+                    <input id="inputs-data" type="text" value="" style="width:100%;" />
+                    <span id="inputs-data-validation"></span>
+                    <br />
+                    <a data-action="loadData" class="w3-button w3-theme">Load</a>  
+                </div>
             </div>
         </div>
 
@@ -121,10 +130,17 @@
         <hr>
 
         <div class="w3-padding w3-white w3-display-container">
-            <div id="outputs" class="w3-center">
-                <label>PoB Data</label>
-                <input id="outputs-data" type="text" value="" style="width:100%;" />
-                <a data-action="copyOutput" class="w3-button w3-theme">Copy</a>
+            <div id="outputs" class="w3-row">
+                <div class="w3-half w3-container w3-center">
+                    <label>Pastebin</label>
+                    <input id="outputs-data-pastebin" type="text" value="" style="width:100%;" />
+                    <a data-action="copyOutputPastebin" class="w3-button w3-theme">Copy</a>
+                </div>
+                <div class="w3-half w3-container w3-center">
+                    <label>PoB Data</label>
+                    <input id="outputs-data" type="text" value="" style="width:100%;" />
+                    <a data-action="copyOutput" class="w3-button w3-theme">Copy</a>
+                </div>
             </div>
         </div>
 

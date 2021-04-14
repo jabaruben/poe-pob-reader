@@ -1,7 +1,7 @@
-import xmlToJsonModule from './utils/xmlToJson.js';
-import jsonToXmlModule from './utils/jsonToXml.js';
-import {decompressString, compressString} from './utils/compressionHandlers.js'
 import loadScript from './utils/scriptLoader.js';
+import loadHTML from './utils/htmlLoader.js';
+import { loadPobString, loadPastebin } from './loadFunctions.js';
+import { savePob } from './saveFunctions.js';
 
 // TODO: leer un pastebin usando el truco del /raw en la ruta
 // TODO: convertir todo en funciones que reciban parametros para poder usar el pastebin
@@ -9,6 +9,8 @@ import loadScript from './utils/scriptLoader.js';
 // TODO: Generar el orden de las gemas con los datos disponibles en la wiki
 // TODO: Colores para el texto de manera amigable
 // TODO: exportar en pastebin
+
+loadHTML();
 
 let objConfig = {};
 let loadButton = document.querySelector("[data-action=loadData]");
@@ -21,18 +23,22 @@ loadButton.addEventListener("click", (e) => {
     }
     document.querySelector("#inputs-data-validation").innerHTML = "";
     let pobString = inputDataField.value;
-    objConfig.pobString = pobString;
-    decompressString(pobString).then((xmlStringOriginal) => {
-        console.log("xmlstring original", xmlStringOriginal);
-        let xmlDoc = new DOMParser().parseFromString(xmlStringOriginal, "text/xml");
-        // let jsonPob = xmlToJson.parse(xmlDoc);
-        let jsonPob = xmlToJsonModule(xmlDoc);
-        // let jsonPob = xmlToJson2(xmlDoc);
-        console.log("JSON", jsonPob);
-        document.querySelector("#inputs-data-notes").value = jsonPob.PathOfBuilding.Notes["#text"];
-        objConfig.xmlStringOriginal = xmlStringOriginal;
-        objConfig.json = jsonPob;
-    });
+    loadPobString(objConfig, e, pobString);
+});
+
+let loadPastebinButton = document.querySelector("[data-action=loadDataPastebin]");
+loadPastebinButton.addEventListener("click", (e) => {
+    console.log("click", e);
+    // TODO: convertir esto en una funcion aqui y en el boton anterior, mismo codigo
+    let inputDataField = document.querySelector("#inputs-data-pastebin");
+    let inputDataValidationField = document.querySelector("#inputs-data-pastebin-validation");
+    if (inputDataField.value === "") {
+        inputDataValidationField.innerHTML = "El campo no puede ser vacio";
+        return false
+    }
+    inputDataValidationField.innerHTML = "";
+    let pobPastebinString = inputDataField.value;
+    loadPastebin(pobPastebinString, objConfig, e);
 });
 
 let saveButton = document.querySelector("[data-action=saveData]");
@@ -45,15 +51,7 @@ saveButton.addEventListener("click", (e) => {
     // } 
     document.querySelector("#inputs-data-validation-notes").innerHTML = "";
     let notes = inputDataField.value;
-    objConfig.json.PathOfBuilding.Notes["#text"] = notes;
-    objConfig.json = addNotesToJson(objConfig.json);
-    var xmlStringFinal = jsonToXmlModule(objConfig.json);
-    objConfig.xmlStringFinal = xmlStringFinal;
-    compressString(objConfig.xmlStringFinal).then(compressString => {
-        objConfig.pobStringFinal = compressString;
-        let outputField = document.querySelector("#outputs-data");
-        outputField.value = compressString;
-    });
+    savePob(objConfig, notes);
 });
 
 let copyButton = document.querySelector("[data-action=copyOutput]");
@@ -94,11 +92,6 @@ function copyToClipboard(selector) {
     console.log("Copied the text: " + copyText.value);
 }
 
-function addNotesToJson(InputJSON) {
-    console.log("addNotesToJson", InputJSON);
-    InputJSON.PathOfBuilding.Notes["#text"] += "\n\nPrueba pruebosa";
-    return InputJSON;
-}
 
 
 
